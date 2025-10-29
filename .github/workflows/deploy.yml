@@ -1,3 +1,4 @@
+
 name: Deploy to GitHub Pages
 
 on:
@@ -26,6 +27,12 @@ jobs:
         
       - name: Build
         run: npm run build
+        
+      - name: Copy .nojekyll
+        run: cp public/.nojekyll dist/.nojekyll
+        
+      - name: Create 404.html for GitHub Pages routing
+        run: cp dist/index.html dist/404.html
         
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
